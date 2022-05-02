@@ -1,6 +1,6 @@
 
     <div *ngFor="let formation of formations">
-        {{formation.titre}}
+        <a routerLink="/formation/detail/{{formation.id}}">{{formation.titre}}</a>
         {{formation.annee}}
         <a routerLink="/formation/detail"> ajouter une formation</a>
     </div>

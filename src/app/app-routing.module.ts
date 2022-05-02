@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'formation/detail', component: FormationDetailComponent }
-
+  { path: 'formation/detail', component: FormationDetailComponent },
+  { path: 'formation/detail/:id', component: FormationDetailComponent }
 ];
 
 @NgModule({
