@@ -1,10 +1,5 @@
 <div class="col-md-12">
     <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
       <form
         *ngIf="!isSuccessful"
         name="form"
@@ -34,24 +29,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            [(ngModel)]="form.email"
-            required
-            email
-            #email="ngModel"
-          />
-          <div class="alert-danger" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.hasError('required')">Email is required</div>
-            <div *ngIf="login.hasError('email')">
-              Email must be a valid email address
-            </div>
-          </div>
-        </div>
+ 
         <div class="form-group">
           <label for="password">Password</label>
           <input
