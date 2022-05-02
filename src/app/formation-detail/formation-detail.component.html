@@ -1,0 +1,35 @@
+<div class="container">
+    <div *ngIf="formation">
+            <form  [formGroup]="formationForm" (ngSubmit)="saveFormation()">
+                <div class="form-group row">
+                  <label for="titre" class="col-sm-2 col-form-label">titre</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="titre" [(ngModel)]="formation.titre" formControlName="titre">
+                  </div>
+                </div>
+            
+              
+                  <button class="button" type="submit">Save </button>
+            
+              </form>
+    </div>
+        <div *ngIf="formation ==undefined">
+            <form  [formGroup]="formationForm" (ngSubmit)="addFormation(titre.value)">
+                <div class="form-group row">
+                <label for="titre" class="col-sm-2 col-form-label">titre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" #titre id="titre" formControlName="titre">
+                </div>
+                </div>
+            
+                <button class="button" type="submit">ajouter une formation </button>
+    
+            
+            </form>
+        </div>
+        <br>
+        <br>
+        <button type="button" (click)="goBack()">Go back</button>
+    </div>
+    
+    
