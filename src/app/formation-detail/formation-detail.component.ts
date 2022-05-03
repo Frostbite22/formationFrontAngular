@@ -4,6 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
 import { FormationService } from '../_services/formation.service';
+import { DomaineService } from '../_services/domaine.service';
+import { Domaine } from '../entities/domaine';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-formation-detail',
@@ -13,11 +17,13 @@ import { FormationService } from '../_services/formation.service';
 export class FormationDetailComponent implements OnInit {
 
   @Input() formation? : Formation 
+  domaines? : Domaine[] 
   constructor(
     private route : ActivatedRoute,
     private location : Location, 
     private formationService : FormationService,
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private domaineService : DomaineService
   ) { }
 
   formationForm = this.formBuilder.group(
@@ -27,13 +33,13 @@ export class FormationDetailComponent implements OnInit {
       duree : this.formation?.duree,
       nb_session : this.formation?.nb_session,
       budget :this.formation?.budget,
-      id : this.formation?.id,
       type : this.formation?.type,
-      domaine_id : this.formation?.domaine_id
+      domaine : this.formation?.domaine
     }
   ) ;
   ngOnInit(): void {
     this.getFormation(); 
+    this.getDomaines();
   }
 
   goBack() : void 
@@ -66,5 +72,18 @@ export class FormationDetailComponent implements OnInit {
       );
     }
   }
+
+  getDomaines() : void 
+  {
+    this.domaineService.getDomaines().subscribe(
+      (response : Domaine[]) => {
+        this.domaines = response ;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
 
 }

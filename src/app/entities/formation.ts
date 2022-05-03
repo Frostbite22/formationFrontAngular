@@ -1,3 +1,5 @@
+import { Domaine } from "./domaine";
+
 export interface Formation 
 {
     id?: number ; 
@@ -7,7 +9,8 @@ export interface Formation
     nb_session? : number ; 
     titre : string ; 
     type? : string ; 
-    domaine_id? : number ;
+    domaine? : Domaine
+
 }
 
 export class Formation 
@@ -19,7 +22,7 @@ export class Formation
     nb_session? : number ; 
     titre : string ; 
     type? : string ; 
-    domaine_id? : number ;
+    domaine? : Domaine
 
     constructor(titre: string) {
         this.titre = titre;
