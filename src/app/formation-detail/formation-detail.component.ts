@@ -3,7 +3,7 @@ import { Formation } from '../entities/formation';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
-import { UserService } from '../_services/user.service';
+import { FormationService } from '../_services/formation.service';
 
 @Component({
   selector: 'app-formation-detail',
@@ -16,7 +16,7 @@ export class FormationDetailComponent implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private location : Location, 
-    private userService : UserService,
+    private formationService : FormationService,
     private formBuilder : FormBuilder
   ) { }
 
@@ -44,14 +44,14 @@ export class FormationDetailComponent implements OnInit {
   getFormation() : void 
   {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getFormation(id).subscribe(formation => this.formation = formation); 
+    this.formationService.getFormation(id).subscribe(formation => this.formation = formation); 
   }
 
   addFormation(titre :string) : void 
   {
     let nFormation: Formation = new Formation(titre);
 
-    this.userService.addFormation(nFormation)
+    this.formationService.addFormation(nFormation)
     .subscribe(() => this.goBack()) ; 
   }
 
@@ -61,7 +61,7 @@ export class FormationDetailComponent implements OnInit {
   {
     if(this.formation)
     {
-      this.userService.updateFormation(this.formation).subscribe(
+      this.formationService.updateFormation(this.formation).subscribe(
         () => this.goBack()
       );
     }

@@ -10,7 +10,7 @@ const httpOptions = { headers : new HttpHeaders({'Content-Type': 'application/js
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class FormationService {
 
   constructor(
     private http : HttpClient

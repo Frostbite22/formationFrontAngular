@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+import { FormationService } from '../_services/formation.service';
 import { Formation } from '../entities/formation';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userService : UserService) { }
+  constructor(private formationService : FormationService) { }
 
   formations? : Formation[] ;
   
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   getFormations() : void 
   {
-    this.userService.getFormations().subscribe(
+    this.formationService.getFormations().subscribe(
       (response : Formation[]) => {
         this.formations = response ;
       },
