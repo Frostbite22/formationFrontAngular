@@ -13,7 +13,10 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule } from '@angular/common/http';
 import {authInterceptorProviders } from './_helpers/auth.interceptor';
-import { FormationDetailComponent } from './formation-detail/formation-detail.component'; 
+import { FormationDetailComponent } from './formation-detail/formation-detail.component';
+import { FormationComponent } from './formation/formation.component';
+import { DomaineComponent } from './domaine/domaine.component';
+import { DomaineDetailComponent } from './domaine-detail/domaine-detail.component'; 
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { FormationDetailComponent } from './formation-detail/formation-detail.co
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    FormationDetailComponent
+    FormationDetailComponent,
+    FormationComponent,
+    DomaineComponent,
+    DomaineDetailComponent
     
   ],
   imports: [

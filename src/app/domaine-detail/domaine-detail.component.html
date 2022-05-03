@@ -1,0 +1,36 @@
+<br>
+<div class="container">
+    <div *ngIf="domaine">
+            <form  [formGroup]="formationForm" (ngSubmit)="saveDomaine()">
+                <div class="form-group row">
+                  <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="libelle" [(ngModel)]="domaine.libelle" formControlName="libelle">
+                  </div>
+                </div>
+
+
+                  <button class="button" type="submit">Save </button>
+            
+              </form>
+    </div>
+        <div *ngIf="domaine ==undefined">
+            <form  [formGroup]="formationForm" (ngSubmit)="addDomaine(domaine.value)">
+                <div class="form-group row">
+                <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" #domaine id="libelle" formControlName="libelle">
+                </div>
+                </div>
+            
+                <button class="button" type="submit">ajouter un domain </button>
+    
+            
+            </form>
+        </div>
+        <br>
+        <br>
+        <button type="button" (click)="goBack()">Go back</button>
+    </div>
+    
+    

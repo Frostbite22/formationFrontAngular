@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormationDetailComponent } from './formation-detail/formation-detail.component';
+import { DomaineDetailComponent } from './domaine-detail/domaine-detail.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'formation/detail', component: FormationDetailComponent },
-  { path: 'formation/detail/:id', component: FormationDetailComponent }
+  { path: 'formation/detail/:id', component: FormationDetailComponent },
+  { path: 'domaine/detail', component: DomaineDetailComponent },
+  { path: 'domaine/detail/:id', component: DomaineDetailComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,28 @@
+
+  <div *ngIf="adminPermission">
+    <h3><a routerLink="/domaine/detail" *ngIf="adminPermission"> ajouter un domaine</a></h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">libelle</th>
+
+            <th scope="col" *ngIf="adminPermission">update</th>
+            <th scope="col" *ngIf="adminPermission">delete</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let domaine of domaines">
+    
+            <tr>
+            <th scope="row">{{domaine.id}}</th>
+            <td>{{domaine.libelle}}</td>
+            
+            <td><a routerLink="/domaine/detail/{{domaine.id}}">update</a></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteDomaine(domaine.id!)">delete</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+ 
