@@ -9,9 +9,11 @@
             <th scope="col">titre</th>
             <th scope="col">annee</th>
             <th scope="col">budget</th>
+            <th scope="col">nb_session</th>
             <th scope="col">duree</th>
             <th scope="col">domaine</th>
             <th scope="col">update</th>
+            <th scope="col">delete</th>
           </tr>
         </thead>
         <tbody *ngFor="let formation of formations">
@@ -21,9 +23,11 @@
             <td>{{formation.titre}}</td>
             <td>{{formation.annee}}</td>
             <td>{{formation.budget}}</td>
+            <td>{{formation.nb_session}}</td>
             <td>{{formation.duree}}</td>
             <td>{{formation.domaine_id}}</td>
             <td><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteFormation(formation.id!)">delete</button></td>
           </tr>
 
         </tbody>

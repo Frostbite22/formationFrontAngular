@@ -31,6 +31,18 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  public deleteFormation(id : number): void{
+    this.formationService.deleteFormation(id).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getFormations();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }      
+    );
+  }
+
 
 
 }
