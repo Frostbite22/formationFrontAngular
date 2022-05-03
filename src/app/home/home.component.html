@@ -1,7 +1,6 @@
 
   
-  <h3><a routerLink="/formation/detail"> ajouter une formation</a></h3>
-   
+  <h3><a routerLink="/formation/detail" *ngIf="adminPermission"> ajouter une formation</a></h3>
     <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -12,8 +11,8 @@
             <th scope="col">nb_session</th>
             <th scope="col">duree</th>
             <th scope="col">domaine</th>
-            <th scope="col">update</th>
-            <th scope="col">delete</th>
+            <th scope="col" *ngIf="adminPermission">update</th>
+            <th scope="col" *ngIf="adminPermission">delete</th>
           </tr>
         </thead>
         <tbody *ngFor="let formation of formations">
@@ -26,8 +25,8 @@
             <td>{{formation.nb_session}}</td>
             <td>{{formation.duree}}</td>
             <td>{{formation.domaine_id}}</td>
-            <td><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
-            <td><button type="button" class="btn btn-danger" (click)="deleteFormation(formation.id!)">delete</button></td>
+            <td *ngIf="adminPermission"><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
+            <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteFormation(formation.id!)">delete</button></td>
           </tr>
 
         </tbody>
