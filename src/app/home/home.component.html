@@ -1,6 +1,35 @@
 
-    <div *ngFor="let formation of formations">
-        <a routerLink="/formation/detail/{{formation.id}}">{{formation.titre}}</a>
-        {{formation.annee}}
-        <a routerLink="/formation/detail"> ajouter une formation</a>
-    </div>
+  
+  <h3><a routerLink="/formation/detail"> ajouter une formation</a></h3>
+   
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">titre</th>
+            <th scope="col">annee</th>
+            <th scope="col">budget</th>
+            <th scope="col">duree</th>
+            <th scope="col">domaine</th>
+            <th scope="col">update</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let formation of formations">
+   
+          <tr>
+            <th scope="row">{{formation.id}}</th>
+            <td>{{formation.titre}}</td>
+            <td>{{formation.annee}}</td>
+            <td>{{formation.budget}}</td>
+            <td>{{formation.duree}}</td>
+            <td>{{formation.domaine_id}}</td>
+            <td><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+   
+      
+
+      
