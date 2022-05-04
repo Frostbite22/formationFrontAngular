@@ -10,6 +10,7 @@
           <th scope="col">budget</th>
           <th scope="col">nb_session</th>
           <th scope="col">duree</th>
+          <th scope="col">type</th>
           <th scope="col">domaine</th>
           <th scope="col" *ngIf="adminPermission">update</th>
           <th scope="col" *ngIf="adminPermission">delete</th>
@@ -24,6 +25,7 @@
           <td>{{formation.budget}}</td>
           <td>{{formation.nb_session}}</td>
           <td>{{formation.duree}}</td>
+          <td>{{formation.type}}</td>
           <td>{{formation.domaine?.libelle}}</td>
           <td *ngIf="adminPermission"><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
           <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteFormation(formation.id!)">delete</button></td>
