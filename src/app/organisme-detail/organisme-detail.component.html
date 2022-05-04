@@ -1,1 +1,36 @@
-<p>organisme-detail works!</p>
+<br>
+<div class="container">
+    <div *ngIf="organisme">
+            <form  [formGroup]="organismeForm" (ngSubmit)="saveOrganisme()">
+                <div class="form-group row">
+                  <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="libelle" [(ngModel)]="organisme.libelle" formControlName="libelle">
+                  </div>
+                </div>
+
+
+                  <button class="button" type="submit">Save </button>
+            
+              </form>
+    </div>
+        <div *ngIf="organisme ==undefined">
+            <form  [formGroup]="organismeForm" (ngSubmit)="addOrganisme(organisme.value)">
+                <div class="form-group row">
+                <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" #organisme id="libelle" formControlName="libelle">
+                </div>
+                </div>
+            
+                <button class="button" type="submit">ajouter une organisme </button>
+    
+            
+            </form>
+        </div>
+        <br>
+        <br>
+        <button type="button" (click)="goBack()">Go back</button>
+    </div>
+    
+    
