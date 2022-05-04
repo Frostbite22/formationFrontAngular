@@ -8,6 +8,8 @@ import { FormationDetailComponent } from './formation-detail/formation-detail.co
 import { DomaineDetailComponent } from './domaine-detail/domaine-detail.component';
 import { OrganismeDetailComponent } from './organisme-detail/organisme-detail.component';
 import { FormateurComponent } from './formateur/formateur.component';
+import { Formateur } from './entities/formateur';
+import { FormateurDetailComponent } from './formateur-detail/formateur-detail.component';
 
 
 
@@ -24,7 +26,10 @@ const routes: Routes = [
   { path: 'domaine/detail/:id', component: DomaineDetailComponent },
   { path: 'organisme/detail', component: OrganismeDetailComponent },
   { path: 'organisme/detail/:id', component: OrganismeDetailComponent },
-  { path: 'formateurs', component: FormateurComponent }
+  { path: 'formateurs', component: FormateurComponent },
+  { path: 'formateur/detail', component: FormateurDetailComponent },
+  { path: 'formateur/detail/:id', component: FormateurDetailComponent },
+
 ];
 
 @NgModule({

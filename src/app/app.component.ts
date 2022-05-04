@@ -12,6 +12,8 @@ export class AppComponent {
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
+  adminPermission : boolean = false ; 
+
   user : any ;
   constructor(private tokenStorageService: TokenStorageService) { }
   ngOnInit(): void {
@@ -19,14 +21,20 @@ export class AppComponent {
     if (this.isLoggedIn) {
       this.user = this.tokenStorageService.getUser();
       this.roles = this.user.roles;
+      this.adminPermission = this.permissions();
      // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
      // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
     }
+
   }
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+
+  public permissions(): boolean 
+  {
+    return this.user.roles.includes("ROLE_ADMIN");
   }
 
 }

@@ -1,1 +1,35 @@
+
+  
+  <h3><a routerLink="/formateur/detail" *ngIf="adminPermission"> ajouter un formateur</a></h3>
+  <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">nom</th>
+          <th scope="col">prenom</th>
+          <th scope="col">email</th>
+          <th scope="col">tel</th>
+          <th scope="col">type</th>
+          <th scope="col">organisme</th>
+          <th scope="col" *ngIf="adminPermission">update</th>
+          <th scope="col" *ngIf="adminPermission">delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let formateur of formateurs">
+ 
+        <tr>
+          <th scope="row">{{formateur.id}}</th>
+          <td>{{formateur.nom}}</td>
+          <td>{{formateur.prenom}}</td>
+          <td>{{formateur.email}}</td>
+          <td>{{formateur.tel}}</td>
+          <td>{{formateur.type}}</td>
+          <td>{{formateur.organisme?.libelle}}</td>
+          <td *ngIf="adminPermission"><a routerLink="/formateur/detail/{{formateur.id}}">update</a></td>
+          <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteFormateur(formateur.id!)">delete</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+
 <app-organisme></app-organisme>
