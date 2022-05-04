@@ -16,7 +16,9 @@ import {authInterceptorProviders } from './_helpers/auth.interceptor';
 import { FormationDetailComponent } from './formation-detail/formation-detail.component';
 import { FormationComponent } from './formation/formation.component';
 import { DomaineComponent } from './domaine/domaine.component';
-import { DomaineDetailComponent } from './domaine-detail/domaine-detail.component'; 
+import { DomaineDetailComponent } from './domaine-detail/domaine-detail.component';
+import { FormateurComponent } from './formateur/formateur.component';
+import { FormateurDetailComponent } from './formateur-detail/formateur-detail.component'; 
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { DomaineDetailComponent } from './domaine-detail/domaine-detail.componen
     FormationDetailComponent,
     FormationComponent,
     DomaineComponent,
-    DomaineDetailComponent
+    DomaineDetailComponent,
+    FormateurComponent,
+    FormateurDetailComponent
     
   ],
   imports: [
