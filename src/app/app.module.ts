@@ -18,7 +18,9 @@ import { FormationComponent } from './formation/formation.component';
 import { DomaineComponent } from './domaine/domaine.component';
 import { DomaineDetailComponent } from './domaine-detail/domaine-detail.component';
 import { FormateurComponent } from './formateur/formateur.component';
-import { FormateurDetailComponent } from './formateur-detail/formateur-detail.component'; 
+import { FormateurDetailComponent } from './formateur-detail/formateur-detail.component';
+import { OrganismeDetailComponent } from './organisme-detail/organisme-detail.component';
+import { OrganismeComponent } from './organisme/organisme.component'; 
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { FormateurDetailComponent } from './formateur-detail/formateur-detail.co
     DomaineComponent,
     DomaineDetailComponent,
     FormateurComponent,
-    FormateurDetailComponent
+    FormateurDetailComponent,
+    OrganismeDetailComponent,
+    OrganismeComponent
     
   ],
   imports: [
