@@ -1,3 +1,37 @@
+<h3><a routerLink="/participant/detail" *ngIf="adminPermission"> ajouter un participant</a></h3>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">nom</th>
+        <th scope="col">prenom</th>
+        <th scope="col">email</th>
+        <th scope="col">tel</th>
+        <th scope="col">pays</th>
+        <th scope="col">organisme</th>
+        <th scope="col">profil</th>
+        <th scope="col" *ngIf="adminPermission">update</th>
+        <th scope="col" *ngIf="adminPermission">delete</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let participant of participants">
+
+      <tr>
+        <th scope="row">{{participant.id}}</th>
+        <td>{{participant.nom}}</td>
+        <td>{{participant.prenom}}</td>
+        <td>{{participant.email}}</td>
+        <td>{{participant.tel}}</td>
+        <td>{{participant.pays?.nom}}</td>
+        <td>{{participant.organisme?.libelle}}</td>
+        <td>{{participant.profil?.libelle}}</td>
+        <td *ngIf="adminPermission"><a routerLink="/participant/detail/{{participant.id}}">update</a></td>
+        <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteParticipant(participant.id!)">delete</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+
 <div class="row">
     <div class="col col-md-6">
         <app-profil></app-profil>
