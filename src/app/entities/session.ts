@@ -9,7 +9,6 @@ export interface Session
     date_debut : Date ;
     date_fin : Date ;
     lieu : string ; 
-    nb_participant? : number ; 
     formateur : Formateur ; 
     formation : Formation ;
     organisme? : Organisme;
@@ -23,7 +22,6 @@ export class Session
     date_debut : Date ;
     date_fin : Date ;
     lieu : string ; 
-    nb_participant? : number ; 
     formateur : Formateur ; 
     formation : Formation ;
     organisme? : Organisme;
