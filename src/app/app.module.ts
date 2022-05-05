@@ -20,7 +20,11 @@ import { DomaineDetailComponent } from './domaine-detail/domaine-detail.componen
 import { FormateurComponent } from './formateur/formateur.component';
 import { FormateurDetailComponent } from './formateur-detail/formateur-detail.component';
 import { OrganismeDetailComponent } from './organisme-detail/organisme-detail.component';
-import { OrganismeComponent } from './organisme/organisme.component'; 
+import { OrganismeComponent } from './organisme/organisme.component';
+import { PaysComponent } from './pays/pays.component';
+import { PaysDetailComponent } from './pays-detail/pays-detail.component';
+import { ProfilComponent } from './profil/profil.component';
+import { ProfilDetailComponent } from './profil-detail/profil-detail.component'; 
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { OrganismeComponent } from './organisme/organisme.component';
     FormateurComponent,
     FormateurDetailComponent,
     OrganismeDetailComponent,
-    OrganismeComponent
+    OrganismeComponent,
+    PaysComponent,
+    PaysDetailComponent,
+    ProfilComponent,
+    ProfilDetailComponent
     
   ],
   imports: [
