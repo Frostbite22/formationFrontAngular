@@ -1,1 +1,36 @@
-<p>profil-detail works!</p>
+<br>
+<div class="container">
+    <div *ngIf="profil">
+            <form  [formGroup]="organismeForm" (ngSubmit)="saveProfil()">
+                <div class="form-group row">
+                  <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="libelle" [(ngModel)]="profil.libelle" formControlName="libelle">
+                  </div>
+                </div>
+
+
+                  <button class="button" type="submit">Save </button>
+            
+              </form>
+    </div>
+        <div *ngIf="profil ==undefined">
+            <form  [formGroup]="organismeForm" (ngSubmit)="addProfil(profil.value)">
+                <div class="form-group row">
+                <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" #profil id="libelle" formControlName="libelle">
+                </div>
+                </div>
+            
+                <button class="button" type="submit">ajouter un profil </button>
+    
+            
+            </form>
+        </div>
+        <br>
+        <br>
+        <button type="button" (click)="goBack()">Go back</button>
+    </div>
+    
+    

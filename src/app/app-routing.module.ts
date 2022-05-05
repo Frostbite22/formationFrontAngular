@@ -11,6 +11,8 @@ import { FormateurComponent } from './formateur/formateur.component';
 import { ParticipantComponent } from './participant/participant.component';
 import { FormateurDetailComponent } from './formateur-detail/formateur-detail.component';
 import { PaysDetailComponent } from './pays-detail/pays-detail.component';
+import { ProfilDetailComponent } from './profil-detail/profil-detail.component';
+
 
 
 
@@ -34,6 +36,9 @@ const routes: Routes = [
   { path: 'participants', component: ParticipantComponent },
   { path: 'pays/detail', component: PaysDetailComponent },
   { path: 'pays/detail/:id', component: PaysDetailComponent },
+  { path: 'profil/detail', component: ProfilDetailComponent },
+  { path: 'profil/detail/:id', component: ProfilDetailComponent },
+
 
 
 ];

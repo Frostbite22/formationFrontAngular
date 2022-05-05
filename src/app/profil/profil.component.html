@@ -1,1 +1,28 @@
-<p>profil works!</p>
+
+  <div *ngIf="adminPermission">
+    <h3><a routerLink="/profil/detail" *ngIf="adminPermission"> ajouter un profil</a></h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">libelle</th>
+
+            <th scope="col" *ngIf="adminPermission">update</th>
+            <th scope="col" *ngIf="adminPermission">delete</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let profil of profils">
+    
+            <tr>
+            <th scope="row">{{profil.id}}</th>
+            <td>{{profil.libelle}}</td>
+            
+            <td><a routerLink="/profil/detail/{{profil.id}}">update</a></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteProfil(profil.id!)">delete</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+ 

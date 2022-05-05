@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Domaine } from '../entities/domaine';
-import {catchError} from 'rxjs/operators'; 
 
 
 const API_URL = 'http://localhost:8090';
