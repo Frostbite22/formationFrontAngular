@@ -13,7 +13,7 @@ export interface Session
     formateur : Formateur ; 
     formation : Formation ;
     organisme? : Organisme;
-    participants : Participant[]
+    participants? : Participant[];
 
 }
 
@@ -27,6 +27,7 @@ export class Session
     formateur : Formateur ; 
     formation : Formation ;
     organisme? : Organisme;
+    participants? : Participant[];
 
 
     constructor(date_debut: Date,date_fin : Date,
@@ -38,7 +39,6 @@ export class Session
         this.formation = formation ; 
         this.formateur = formateur ; 
 
-       
       }
     
 }

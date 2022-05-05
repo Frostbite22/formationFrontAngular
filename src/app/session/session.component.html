@@ -1,1 +1,34 @@
-<p>session works!</p>
+<h3><a routerLink="/session/detail" *ngIf="adminPermission"> ajouter une session</a></h3>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">date_debut</th>
+        <th scope="col">date_fin</th>
+        <th scope="col">lieu</th>
+        <th scope="col">formateur</th>
+        <th scope="col">formation</th>
+        <th scope="col">organisme</th>
+        <th scope="col">nombre de participants</th>
+        <th scope="col" *ngIf="adminPermission">update</th>
+        <th scope="col" *ngIf="adminPermission">delete</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let session of sessions">
+
+      <tr>
+        <th scope="row">{{session.id}}</th>
+        <td>{{session.date_debut}}</td>
+        <td>{{session.date_fin}}</td>
+        <td>{{session.lieu}}</td>
+        <td>{{session.formateur.nom}}</td>
+        <td>{{session.formation.titre}}</td>
+        <td>{{session.organisme?.libelle}}</td>
+        <td>{{session.nb_participant}}</td>
+        <td *ngIf="adminPermission"><a routerLink="/session/detail/{{session.id}}">update</a></td>
+        <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteSession(session.id!)">delete</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+
