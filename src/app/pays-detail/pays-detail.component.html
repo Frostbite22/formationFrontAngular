@@ -1,1 +1,36 @@
-<p>pays-detail works!</p>
+<br>
+<div class="container">
+    <div *ngIf="pays">
+            <form  [formGroup]="paysForm" (ngSubmit)="savePays()">
+                <div class="form-group row">
+                  <label for="nom" class="col-sm-2 col-form-label">nom</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="libelle" [(ngModel)]="pays.nom" formControlName="nom">
+                  </div>
+                </div>
+
+
+                  <button class="button" type="submit">Save </button>
+            
+              </form>
+    </div>
+        <div *ngIf="pays ==undefined">
+            <form  [formGroup]="paysForm" (ngSubmit)="addPays(pays.value)">
+                <div class="form-group row">
+                <label for="nom" class="col-sm-2 col-form-label">nom</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" #pays id="nom" formControlName="nom">
+                </div>
+                </div>
+            
+                <button class="button" type="submit">ajouter un pays </button>
+    
+            
+            </form>
+        </div>
+        <br>
+        <br>
+        <button type="button" (click)="goBack()">Go back</button>
+    </div>
+    
+    

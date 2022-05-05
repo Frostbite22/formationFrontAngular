@@ -8,8 +8,10 @@ import { FormationDetailComponent } from './formation-detail/formation-detail.co
 import { DomaineDetailComponent } from './domaine-detail/domaine-detail.component';
 import { OrganismeDetailComponent } from './organisme-detail/organisme-detail.component';
 import { FormateurComponent } from './formateur/formateur.component';
-import { Formateur } from './entities/formateur';
+import { ParticipantComponent } from './participant/participant.component';
 import { FormateurDetailComponent } from './formateur-detail/formateur-detail.component';
+import { PaysDetailComponent } from './pays-detail/pays-detail.component';
+
 
 
 
@@ -29,6 +31,10 @@ const routes: Routes = [
   { path: 'formateurs', component: FormateurComponent },
   { path: 'formateur/detail', component: FormateurDetailComponent },
   { path: 'formateur/detail/:id', component: FormateurDetailComponent },
+  { path: 'participants', component: ParticipantComponent },
+  { path: 'pays/detail', component: PaysDetailComponent },
+  { path: 'pays/detail/:id', component: PaysDetailComponent },
+
 
 ];
 

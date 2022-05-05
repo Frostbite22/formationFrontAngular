@@ -9,6 +9,10 @@
         <li class="nav-item" *ngIf="adminPermission">
           <a href="/formateurs" class="nav-link" routerLink="formateurs">Formateurs </a>
         </li>
+        <li class="nav-item" *ngIf="adminPermission">
+          <a href="/participants" class="nav-link" routerLink="participants">Participants </a>
+        </li>
+
         <li class="nav-item" *ngIf="showAdminBoard">
           <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
         </li>

@@ -1,1 +1,28 @@
-<p>pays works!</p>
+
+  <div *ngIf="adminPermission">
+    <h3><a routerLink="/pays/detail" *ngIf="adminPermission"> ajouter un pays</a></h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">nom</th>
+
+            <th scope="col" *ngIf="adminPermission">update</th>
+            <th scope="col" *ngIf="adminPermission">delete</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let pays of lesPays">
+    
+            <tr>
+            <th scope="row">{{pays.id}}</th>
+            <td>{{pays.nom}}</td>
+            
+            <td><a routerLink="/organisme/detail/{{pays.id}}">update</a></td>
+            <td><button type="button" class="btn btn-danger" (click)="deletePays(pays.id!)">delete</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+ 

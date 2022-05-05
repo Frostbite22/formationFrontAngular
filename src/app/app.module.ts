@@ -24,7 +24,8 @@ import { OrganismeComponent } from './organisme/organisme.component';
 import { PaysComponent } from './pays/pays.component';
 import { PaysDetailComponent } from './pays-detail/pays-detail.component';
 import { ProfilComponent } from './profil/profil.component';
-import { ProfilDetailComponent } from './profil-detail/profil-detail.component'; 
+import { ProfilDetailComponent } from './profil-detail/profil-detail.component';
+import { ParticipantComponent } from './participant/participant.component'; 
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ProfilDetailComponent } from './profil-detail/profil-detail.component';
     PaysComponent,
     PaysDetailComponent,
     ProfilComponent,
-    ProfilDetailComponent
+    ProfilDetailComponent,
+    ParticipantComponent
     
   ],
   imports: [
