@@ -26,7 +26,9 @@ import { PaysDetailComponent } from './pays-detail/pays-detail.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ProfilDetailComponent } from './profil-detail/profil-detail.component';
 import { ParticipantComponent } from './participant/participant.component';
-import { ParticipantDetailComponent } from './participant-detail/participant-detail.component'; 
+import { ParticipantDetailComponent } from './participant-detail/participant-detail.component';
+import { SessionComponent } from './session/session.component';
+import { SessionDetailComponent } from './session-detail/session-detail.component'; 
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { ParticipantDetailComponent } from './participant-detail/participant-det
     ProfilComponent,
     ProfilDetailComponent,
     ParticipantComponent,
-    ParticipantDetailComponent
+    ParticipantDetailComponent,
+    SessionComponent,
+    SessionDetailComponent
     
   ],
   imports: [
