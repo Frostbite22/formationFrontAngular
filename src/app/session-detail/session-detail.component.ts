@@ -30,8 +30,9 @@ export class SessionDetailComponent implements OnInit {
   @Input() session? : Session 
   organismes? : Organisme[] ;
   formateurs? : Formateur[];
-  formations? : Formation[]
-  participants? : Participant[] ; 
+  formations? : Formation[];
+ // participants? : Participant[] ; 
+ // numParticipants? : number = 0 ; 
   constructor(
     private route : ActivatedRoute,
     private location : Location, 
@@ -43,7 +44,7 @@ export class SessionDetailComponent implements OnInit {
     private formationService : FormationService
   ) { }
 
-  participantForm = this.formBuilder.group(
+  sessionForm = this.formBuilder.group(
     {
       date_debut : this.session?.date_debut,
       date_fin : this.session?.date_fin, 
@@ -55,7 +56,7 @@ export class SessionDetailComponent implements OnInit {
   ) ;
   ngOnInit(): void {
     this.getSession();
-    this.getPraticipants(); 
+  //  this.getPraticipants(); 
     this.getOrganismes();
     this.getFormateurs(); 
     this.getFormations();
@@ -73,12 +74,11 @@ export class SessionDetailComponent implements OnInit {
   }
 
   addSession(
-    date_debut: Date,date_fin : Date,
-    lieu : string,formateur : Formateur,
-    formation : Formation
+    
+    lieu : string
   ) : void 
   {
-    let nSession: Session = new Session(date_debut,date_fin,lieu,formateur,formation);
+    let nSession: Session = new Session(lieu);
     this.sessionService.addSession(nSession)
     .subscribe(() => this.goBack()) ; 
   }
@@ -130,17 +130,10 @@ export class SessionDetailComponent implements OnInit {
     );
   }
 
-  getPraticipants() : void 
+/*  getPraticipants() : void
   {
-    this.participantService.getParticipants().subscribe(
-      (response : Participant[]) => {
-        this.participants = response ;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.sessionService.getSession(id).subscribe(session => this.numParticipants = session.participants?.length);
+  }*/
 
 }

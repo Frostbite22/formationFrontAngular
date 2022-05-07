@@ -6,11 +6,11 @@ import { Participant } from "./participant";
 export interface Session 
 {
     id?: number ; 
-    date_debut : Date ;
-    date_fin : Date ;
+    date_debut? : Date ;
+    date_fin? : Date ;
     lieu : string ; 
-    formateur : Formateur ; 
-    formation : Formation ;
+    formateur? : Formateur ; 
+    formation?: Formation ;
     organisme? : Organisme;
     participants? : Participant[];
 
@@ -19,23 +19,23 @@ export interface Session
 export class Session 
 {
     id?: number ; 
-    date_debut : Date ;
-    date_fin : Date ;
+    date_debut? : Date ;
+    date_fin? : Date ;
     lieu : string ; 
-    formateur : Formateur ; 
-    formation : Formation ;
+    formateur? : Formateur ; 
+    formation? : Formation ;
     organisme? : Organisme;
     participants? : Participant[];
 
 
-    constructor(date_debut: Date,date_fin : Date,
-        lieu : string,formateur : Formateur,
-        formation : Formation) {
-        this.date_debut = date_debut;
-        this.date_fin = date_fin ; 
+    constructor(
+        lieu : string
+        ) {
+      /*  this.date_debut = date_debut;
+        this.date_fin = date_fin ; */
         this.lieu = lieu ; 
-        this.formation = formation ; 
-        this.formateur = formateur ; 
+     /*   this.formation = formation ; 
+        this.formateur = formateur ; */
 
       }
     

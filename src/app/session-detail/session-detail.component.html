@@ -1,1 +1,122 @@
-<p>session-detail works!</p>
+<br>
+<div class="container">
+    <div *ngIf="session">
+            <form  [formGroup]="sessionForm" (ngSubmit)="saveSession()">
+                <div class="form-group row">
+                  <label for="date_debut" class="col-sm-2 col-form-label">date debut</label>
+                  <div class="col-sm-10">
+                    <input type="datetime-local" class="form-control" id="date_debut" [(ngModel)]="session.date_debut" formControlName="date_debut">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="prenom" class="col-sm-2 col-form-label">date fin</label>
+                    <div class="col-sm-10">
+                      <input type="datetime-local" class="form-control" id="date_fin" [(ngModel)]="session.date_fin" formControlName="date_fin">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="lieu" class="col-sm-2 col-form-label">lieu</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="lieu" [(ngModel)]="session.lieu" formControlName="lieu">
+                    </div>
+                  </div>
+
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="formateur">formateur</label>
+                    </div>
+                    <select  class="custom-select" id="formateur" formControlName="formateur" [(ngModel)]="session.formateur">
+                        <option [ngValue]="formateur" 
+                        *ngFor="let formateur of formateurs" 
+                        [selected]="formateur.id == session.formateur!.id" >{{formateur.nom}}</option>
+                    </select>
+                  </div>
+                 
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="formation">formation</label>
+                    </div>
+                    <select  class="custom-select" id="formation" formControlName="formation" [(ngModel)]="session.formation">
+                        <option [ngValue]="formation" 
+                        *ngFor="let formation of formations" 
+                        [selected]="formation.id == session.formateur!.id" >{{formation.titre}}</option>
+                    </select>
+                  </div>
+
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="organisme">organisme</label>
+                    </div>
+                    <select  class="custom-select" id="organisme" formControlName="organisme" [(ngModel)]="session.organisme">
+                        <option [ngValue]="organisme" 
+                        *ngFor="let organisme of organismes" 
+                        [selected]="organisme.id == session.organisme!.id" >{{organisme.libelle}}</option>
+                    </select>
+                  </div>
+                  
+
+                  
+
+                  <button class="button" type="submit">Save </button>
+            
+              </form>
+    </div>
+        <div *ngIf="session ==undefined">
+            <form  [formGroup]="sessionForm" (ngSubmit)="
+            addSession(lieu.value)">
+          
+            <!--            <div class="form-group row">
+                <label for="date_debut" class="col-sm-2 col-form-label">date debut</label>
+                <div class="col-sm-10">
+                    <input type="datetime" class="form-control" #date_debut id="date_debut" formControlName="date_debut">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="date_fin" class="col-sm-2 col-form-label">date fin</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" id="date_fin" #date_fin formControlName="date_fin">
+                </div>
+              </div>
+            -->
+
+              <div class="form-group row">
+                <label for="lieu" class="col-sm-2 col-form-label">lieu</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="lieu" #lieu formControlName="lieu">
+                </div>
+              </div>
+
+              <!--
+              <div class="form-group row">
+                <label for="formateur" class="col-sm-2 col-form-label">formateur</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="formateur" #formateur formControlName="formateur">
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="formation" class="col-sm-2 col-form-label">formation</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="formation" #formation formControlName="formation">
+                </div>
+              </div>
+            -->
+            
+                <button class="button" type="submit">ajouter une session </button>
+    
+            
+            </form>
+        </div>
+        <br>
+        <br>
+        <button type="button" (click)="goBack()">Go back</button>
+    </div>
+    
+    
