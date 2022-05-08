@@ -32,7 +32,7 @@ export class SessionService {
 
   public updateSession(session : Session) : Observable<Session> 
   {
-    return this.http.put<Session>(API_URL+'/session',session); 
+    return this.http.put<Session>(API_URL+'/session',session,httpOptions); 
   }
 
   public deleteSession( id : number) : Observable<void> 

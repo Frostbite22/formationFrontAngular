@@ -124,9 +124,25 @@
         Sessions
       </div>
       <ul class="list-group list-group-flush" *ngFor="let session of sessions">
-        <li class="list-group-item">{{session.lieu}}</li>
+        <li class="list-group-item">{{session.formation?.titre}},{{session.date_debut}}</li>
       </ul>
-      <li class="list-group-item">Add to session</li>
+      <li class="list-group-item" ><button class="btn btn-info" (click)="show()">Add to session</button></li>
+      <div id="sessionsToAdd" class="input-group mb-3" hidden>
+
+        <div class="input-group-prepend">
+          <label class="input-group-text" id="session" for="session">sessions</label>
+        </div>
+        <select  class="custom-select" 
+        #mySelect
+        (change)='onOptionsSelected(mySelect.value)'>
+            <option [value]="session.id" 
+            [selected]="session.id"
+            *ngFor="let session of allSessions">
+            {{session.lieu}}</option>
+        </select>
+        </div>
+      <button id="saveAdded" class="button btn" (click)="saveSession()" hidden>Save </button>
+
     </div>
     
   </div>

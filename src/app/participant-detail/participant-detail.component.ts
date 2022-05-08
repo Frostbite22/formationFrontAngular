@@ -13,6 +13,11 @@ import { Pays } from '../entities/pays';
 import { Profil } from '../entities/profil';
 import { SessionService } from '../_services/session.service';
 import { Session } from '../entities/session';
+import { DOCUMENT } from '@angular/common'; 
+import { Inject }  from '@angular/core';
+import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
+
+
 
 @Component({
   selector: 'app-participant-detail',
@@ -22,10 +27,13 @@ import { Session } from '../entities/session';
 export class ParticipantDetailComponent implements OnInit {
 
   @Input() participant? : Participant 
+   session? : Session 
+   sessionId?: number
   organismes? : Organisme[] ;
   lesPays? : Pays[];
   profils? : Profil[] ; 
   sessions? : Session[];
+  allSessions?: Session[];
   constructor(
     private route : ActivatedRoute,
     private location : Location, 
@@ -34,7 +42,8 @@ export class ParticipantDetailComponent implements OnInit {
     private organismeService : OrganismeService,
     private paysService : PaysService, 
     private profilService : ProfilService,
-    private sessionService : SessionService
+    private sessionService : SessionService,
+    @Inject(DOCUMENT) document: Document
   ) { }
 
   participantForm = this.formBuilder.group(
@@ -48,12 +57,22 @@ export class ParticipantDetailComponent implements OnInit {
       profil : this.participant?.profil 
     }
   ) ;
+  sessionForm = this.formBuilder.group(
+    {
+      date_debut : this.session?.date_debut,
+      date_fin : this.session?.date_fin, 
+      lieu : this.session?.lieu,
+      formateur : this.session?.formateur,
+      formation : this.session?.formation,
+      organisme : this.session?.organisme 
+    }
+  ) ;
   ngOnInit(): void {
     this.getParticipant(); 
     this.getOrganismes();
     this.getLesPays(); 
     this.getProfils();
-    this.getSessions();
+    this.getSessionsPerParticipant();
   
   }
 
@@ -125,7 +144,7 @@ export class ParticipantDetailComponent implements OnInit {
     );
   }
 
-  getSessions(): void 
+  getSessionsPerParticipant(): void 
   {
     const participant_id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -145,12 +164,48 @@ export class ParticipantDetailComponent implements OnInit {
     })
   }
 
+  show(): void 
+  {
+
+    document.getElementById("sessionsToAdd")!.hidden = false ; 
+    document.getElementById("saveAdded")!.hidden = false ; 
+
+    this.getSessions();
+
+  }
+
+  saveSession() : void 
+  {
+    if(this.sessionId)
+    {
+    
+     this.session?.participants?.push(this.participant!);
+     console.log(this.session)
+     this.sessionService.updateSession(this.session!).subscribe(
+      () => this.goBack());
+
+    }
+
+  }
+
+  getSessions() : void 
+  {
+    this.sessionService.getSessions().subscribe(
+      (response : Session[]) => {
+        this.allSessions = response ;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  onOptionsSelected(value : string) : void 
+  {
+     this.sessionId = parseInt(value) ;
+     this.sessionService.getSession(this.sessionId).subscribe(session => this.session = session);    
+
+  }
   
-  /*
-this.sessions = response.filter(session => {
-    session.participants?.forEach(participant => 
-      participant.id == session.id)
-  */
-
-
+  
 }
