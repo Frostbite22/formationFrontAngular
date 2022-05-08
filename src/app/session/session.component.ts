@@ -29,7 +29,7 @@ export class SessionComponent implements OnInit {
   {
     this.sessionService.getSessions().subscribe(
       (response : Session[]) => {
-        this.sessions = response ;
+        this.sessions = response
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -53,6 +53,12 @@ export class SessionComponent implements OnInit {
   {
     return this.currentUser.roles.includes("ROLE_ADMIN");
   }
+
+  /*
+  this.sessions = response.filter(session => {
+    session.participants?.forEach(participant => 
+      participant.id == session.id)
+  })*/
 
 
 

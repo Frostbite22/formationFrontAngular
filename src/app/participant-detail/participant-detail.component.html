@@ -116,5 +116,8 @@
         <br>
         <button type="button" (click)="goBack()">Go back</button>
     </div>
+    <div *ngFor="let session of sessions">
+        {{session.lieu}}
+    </div>
     
     

@@ -11,6 +11,8 @@ import { PaysService } from '../_services/pays.service';
 import { ProfilService } from '../_services/profil.service';
 import { Pays } from '../entities/pays';
 import { Profil } from '../entities/profil';
+import { SessionService } from '../_services/session.service';
+import { Session } from '../entities/session';
 
 @Component({
   selector: 'app-participant-detail',
@@ -23,6 +25,7 @@ export class ParticipantDetailComponent implements OnInit {
   organismes? : Organisme[] ;
   lesPays? : Pays[];
   profils? : Profil[] ; 
+  sessions? : Session[];
   constructor(
     private route : ActivatedRoute,
     private location : Location, 
@@ -30,7 +33,8 @@ export class ParticipantDetailComponent implements OnInit {
     private formBuilder : FormBuilder,
     private organismeService : OrganismeService,
     private paysService : PaysService, 
-    private profilService : ProfilService
+    private profilService : ProfilService,
+    private sessionService : SessionService
   ) { }
 
   participantForm = this.formBuilder.group(
@@ -49,6 +53,8 @@ export class ParticipantDetailComponent implements OnInit {
     this.getOrganismes();
     this.getLesPays(); 
     this.getProfils();
+    this.getSessions();
+  
   }
 
   goBack() : void 
@@ -118,6 +124,33 @@ export class ParticipantDetailComponent implements OnInit {
       }
     );
   }
+
+  getSessions(): void 
+  {
+    const participant_id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.sessionService.getSessions().subscribe(
+      (response: Session[]) => {
+        let aux : Session[] = []; 
+        for (let session of response)
+        {
+          session.participants?.forEach(participant => {
+            if(participant.id ==participant_id)
+            {
+              aux.push(session); 
+            }
+          })
+        }
+        this.sessions = aux ; 
+    })
+  }
+
+  
+  /*
+this.sessions = response.filter(session => {
+    session.participants?.forEach(participant => 
+      participant.id == session.id)
+  */
 
 
 }
