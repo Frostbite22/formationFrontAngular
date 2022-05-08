@@ -16,6 +16,7 @@ import { ParticipantDetailComponent } from './participant-detail/participant-det
 import { SessionComponent } from './session/session.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
 import { UserComponent } from './user/user.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 
@@ -47,7 +48,10 @@ const routes: Routes = [
   { path: 'sessions', component: SessionComponent },
   { path: 'session/detail', component: SessionDetailComponent },
   { path: 'session/detail/:id', component: SessionDetailComponent },
-  { path: 'users', component: UserComponent }
+  { path: 'users', component: UserComponent },
+  { path: 'user/detail', component: UserDetailComponent },
+  { path: 'user/detail/:id', component: UserDetailComponent },
+
 
 
 

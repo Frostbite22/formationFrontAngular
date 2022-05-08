@@ -6,7 +6,7 @@ export interface User
     password : string ; 
 }
 
-export class Formateur 
+export class User 
 {
     code?: number ; 
     login : string ; 

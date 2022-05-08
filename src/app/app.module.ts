@@ -30,7 +30,9 @@ import { ParticipantDetailComponent } from './participant-detail/participant-det
 import { SessionComponent } from './session/session.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
 import { UserComponent } from './user/user.component';
-import { UserDetailComponent } from './user-detail/user-detail.component'; 
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { RoleComponent } from './role/role.component';
+import { RoleDetailComponent } from './role-detail/role-detail.component'; 
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     SessionComponent,
     SessionDetailComponent,
     UserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    RoleComponent,
+    RoleDetailComponent
     
   ],
   imports: [
