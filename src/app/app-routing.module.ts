@@ -15,6 +15,7 @@ import { ProfilDetailComponent } from './profil-detail/profil-detail.component';
 import { ParticipantDetailComponent } from './participant-detail/participant-detail.component';
 import { SessionComponent } from './session/session.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -45,7 +46,8 @@ const routes: Routes = [
   { path: 'participant/detail/:id', component: ParticipantDetailComponent },
   { path: 'sessions', component: SessionComponent },
   { path: 'session/detail', component: SessionDetailComponent },
-  { path: 'session/detail/:id', component: SessionDetailComponent }
+  { path: 'session/detail/:id', component: SessionDetailComponent },
+  { path: 'users', component: UserComponent }
 
 
 

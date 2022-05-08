@@ -138,7 +138,7 @@
             <option [value]="session.id" 
             [selected]="session.id"
             *ngFor="let session of allSessions">
-            {{session.lieu}}</option>
+            {{session.formation?.titre}},{{session.date_debut}}</option>
         </select>
         </div>
       <button id="saveAdded" class="button btn" (click)="saveSession()" hidden>Save </button>
