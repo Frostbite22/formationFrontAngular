@@ -20,9 +20,9 @@ export class ProfilService {
     return this.http.get<Profil[]>(API_URL +'/profil',httpOptions)
   }
 
-  addProfil(domaine : Profil) : Observable<Profil> 
+  addProfil(profil : Profil) : Observable<Profil> 
   {
-    return this.http.post<Profil>(API_URL+'/profil',domaine); 
+    return this.http.post<Profil>(API_URL+'/profil',profil); 
   }
 
   getProfil(id : number) : Observable<Profil> 
@@ -30,9 +30,9 @@ export class ProfilService {
     return this.http.get<Profil>(API_URL+`/profil/${id}`,httpOptions) ;
   }
 
-  public updateProfil(domaine : Profil) : Observable<Profil> 
+  public updateProfil(profil : Profil) : Observable<Profil> 
   {
-    return this.http.put<Profil>(API_URL+'/profil',domaine); 
+    return this.http.put<Profil>(API_URL+'/profil',profil); 
   }
 
   public deleteProfil( id : number) : Observable<void> 
