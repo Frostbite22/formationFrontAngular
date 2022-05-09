@@ -48,5 +48,37 @@
         <br>
         <button type="button" (click)="goBack()">Go back</button>
     </div>
+
+
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          roles
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let role of myRoles">
+          <li class="list-group-item">{{role.nom}}</li>
+        </ul>
+        <li class="list-group-item" ><button class="btn btn-info" (click)="show()">Add Role</button></li>
+        <div id="sessionsToAdd" class="input-group mb-3" hidden>
+  
+          <div class="input-group-prepend">
+            <label class="input-group-text" id="chosenRole" for="chosenRole">Roles</label>
+          </div>
+          <select  class="custom-select" 
+          #mySelect
+          (change)='onOptionsSelected(mySelect.value)'>
+              <option [value]="roles![0]" >
+                {{roles![0]}}
+              </option>
+              <option [value]="roles![1]" >
+                {{roles![1]}}
+              </option>
+          </select>
+          </div>
+        <button id="saveAdded" class="button btn" (click)="saveRole()" hidden>Save </button>
+  
+      </div>
+      
+    </div>
     
     

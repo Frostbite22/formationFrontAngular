@@ -32,7 +32,7 @@ import { SessionDetailComponent } from './session-detail/session-detail.componen
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { RoleComponent } from './role/role.component';
-import { RoleDetailComponent } from './role-detail/role-detail.component'; 
+import { RoleDetailComponent } from './role-detail/role-detail.component';
 
 @NgModule({
   declarations: [

@@ -17,6 +17,7 @@ import { SessionComponent } from './session/session.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { RoleDetailComponent } from './role-detail/role-detail.component';
 
 
 
@@ -51,8 +52,8 @@ const routes: Routes = [
   { path: 'users', component: UserComponent },
   { path: 'user/detail', component: UserDetailComponent },
   { path: 'user/detail/:id', component: UserDetailComponent },
-
-
+  { path: 'role/detail', component: RoleDetailComponent },
+  { path: 'role/detail/:id', component: RoleDetailComponent }
 
 
 

@@ -8,6 +8,8 @@ import { OrganismeService } from '../_services/organisme.service';
 import { Organisme } from '../entities/organisme';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../_services/token-storage.service';
+import { Role } from '../entities/role';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -17,15 +19,18 @@ export class UserDetailComponent implements OnInit {
 
 
 
-  @Input() user? : User 
-  //organismes? : Organisme[] 
+  @Input() user? : User ;
+  roles? : Role[];
+  myRoles?: Role[] ; 
+  currentUser : any ;
+  chosenRole? : Role ;
   constructor(
     private route : ActivatedRoute,
     private location : Location, 
     private userService : UserService,
     private formBuilder : FormBuilder,
-    private organismeService : OrganismeService,
-    private authService : AuthService
+    private authService : AuthService,
+    private token : TokenStorageService
   ) { }
 
   userForm = this.formBuilder.group(
@@ -36,7 +41,7 @@ export class UserDetailComponent implements OnInit {
   ) ;
   ngOnInit(): void {
     this.getUser(); 
-   // this.getOrganismes();
+    this.myRoles = this.user?.roles
   }
 
   goBack() : void 
@@ -70,17 +75,40 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
- /* getOrganismes() : void 
+  getRoles() : void 
   {
-    this.organismeService.getOrganismes().subscribe(
-      (response : Organisme[]) => {
-        this.organismes = response ;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }*/
+   this.currentUser = this.token.getUser();
+   this.roles = this.currentUser.roles;
+  }
 
+
+  show(): void 
+  {
+
+    document.getElementById("sessionsToAdd")!.hidden = false ; 
+    document.getElementById("saveAdded")!.hidden = false ; 
+
+    this.getRoles();
+
+  }
+
+  saveRole() : void 
+  {
+    if(this.chosenRole)
+    {
+     this.user?.roles?.push(this.chosenRole!);
+     this.userService.updateUser(this.user!).subscribe(
+      () => this.goBack());
+
+    }
+
+  }
+
+  onOptionsSelected(value : string) : void 
+  {
+    console.log(value)
+      this.chosenRole = new Role(value);
+  }
+  
 
 }

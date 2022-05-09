@@ -1,1 +1,36 @@
-<p>role-detail works!</p>
+<br>
+<div class="container">
+    <div *ngIf="role">
+            <form  [formGroup]="roleForm" (ngSubmit)="saveRole()">
+                <div class="form-group row">
+                  <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nom" [(ngModel)]="role.nom" formControlName="nom">
+                  </div>
+                </div>
+
+
+                  <button class="button" type="submit">Save </button>
+            
+              </form>
+    </div>
+        <div *ngIf="role ==undefined">
+            <form  [formGroup]="roleForm" (ngSubmit)="addRole(role.value)">
+                <div class="form-group row">
+                <label for="libelle" class="col-sm-2 col-form-label">libelle</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" #role id="nom" formControlName="nom">
+                </div>
+                </div>
+            
+                <button class="button" type="submit">ajouter un role </button>
+    
+            
+            </form>
+        </div>
+        <br>
+        <br>
+        <button type="button" (click)="goBack()">Go back</button>
+    </div>
+    
+    
