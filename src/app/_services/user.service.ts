@@ -21,9 +21,9 @@ export class UserService {
     return this.http.get<User[]>(API_URL +'/utilisateur',httpOptions);
   }
 
-  getUser(id : number) : Observable<User> 
+  getUser(code : number) : Observable<User> 
   {
-    return this.http.get<User>(API_URL+`/utilisateur/${id}`,httpOptions) ;
+    return this.http.get<User>(API_URL+`/utilisateur/${code}`,httpOptions) ;
   }
 
   public updateUser(user : User) : Observable<User> 
@@ -31,9 +31,9 @@ export class UserService {
     return this.http.put<User>(API_URL+'/utilisateur',user); 
   }
 
-  public deleteUser( id : number) : Observable<void> 
+  public deleteUser( code : number) : Observable<void> 
   {
-    return this.http.delete<void>(API_URL+`/utilisateur/${id}`); 
+    return this.http.delete<void>(API_URL+`/utilisateur/${code}`); 
   }
 
 }

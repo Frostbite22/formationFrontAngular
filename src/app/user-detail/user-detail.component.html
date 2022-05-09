@@ -1,25 +1,60 @@
 <br>
 <div class="container">
     <div *ngIf="user">
-            <form  [formGroup]="userForm" (ngSubmit)="saveUser()">
-                <div class="form-group row">
-                  <label for="login" class="col-sm-2 col-form-label">login</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="login" [(ngModel)]="user.login" formControlName="login">
-                  </div>
+      <div class="row">
+        <div class="col col-md-9">
+          <form  [formGroup]="userForm" (ngSubmit)="saveUser()">
+            <div class="form-group row">
+              <label for="login" class="col-sm-2 col-form-label">login</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="login" [(ngModel)]="user.login" formControlName="login">
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="password" [(ngModel)]="user.password" formControlName="password">
                 </div>
+              </div>
+              
 
-                <div class="form-group row">
-                    <label for="password" class="col-sm-2 col-form-label">password</label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control" id="password" [(ngModel)]="user.password" formControlName="password">
-                    </div>
-                  </div>
-                  
-
-                  <button class="button" type="submit">Save </button>
+              <button class="button" type="submit">Save </button>
+        
+          </form>
+        </div>
+        <div class="col col-md-3">
+          <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              roles
+            </div>
+           
+            <ul class="list-group list-group-flush" *ngFor="let role of user.roles">
+              <li class="list-group-item">{{role.nom}}</li>
+            </ul>
+            <li class="list-group-item" ><button class="btn btn-info" (click)="show()">Add Role</button></li>
+            <div id="sessionsToAdd" class="input-group mb-3" hidden>
+      
+              <div class="input-group-prepend">
+                <label class="input-group-text" id="chosenRole" for="chosenRole">Roles</label>
+              </div>
+              <select  class="custom-select" 
+              #mySelect
+              (change)='onOptionsSelected(mySelect.value)'>
+                <option [value]="role.id" 
+                [selected]="role.id"
+                *ngFor="let role of roles">
+                {{role.nom}}</option>
+  
+              </select>
+              </div>
+            <button id="saveAdded" class="button btn" (click)="saveRole()" hidden>Save </button>
+      
+          </div>
+    
+        </div>
+      </div>
             
-              </form>
     </div>
         <div *ngIf="user ==undefined">
             <form  [formGroup]="userForm" (ngSubmit)="
@@ -49,36 +84,4 @@
         <button type="button" (click)="goBack()">Go back</button>
     </div>
 
-
-    <div class="col-md-3">
-      <div class="card" style="width: 18rem;">
-        <div class="card-header">
-          roles
-        </div>
-        <ul class="list-group list-group-flush" *ngFor="let role of myRoles">
-          <li class="list-group-item">{{role.nom}}</li>
-        </ul>
-        <li class="list-group-item" ><button class="btn btn-info" (click)="show()">Add Role</button></li>
-        <div id="sessionsToAdd" class="input-group mb-3" hidden>
-  
-          <div class="input-group-prepend">
-            <label class="input-group-text" id="chosenRole" for="chosenRole">Roles</label>
-          </div>
-          <select  class="custom-select" 
-          #mySelect
-          (change)='onOptionsSelected(mySelect.value)'>
-              <option [value]="roles![0]" >
-                {{roles![0]}}
-              </option>
-              <option [value]="roles![1]" >
-                {{roles![1]}}
-              </option>
-          </select>
-          </div>
-        <button id="saveAdded" class="button btn" (click)="saveRole()" hidden>Save </button>
-  
-      </div>
-      
-    </div>
-    
     

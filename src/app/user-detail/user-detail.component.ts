@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { Role } from '../entities/role';
+import { RoleService } from '../_services/role.service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -21,16 +22,15 @@ export class UserDetailComponent implements OnInit {
 
   @Input() user? : User ;
   roles? : Role[];
-  myRoles?: Role[] ; 
-  currentUser : any ;
   chosenRole? : Role ;
+  chosenRoleId? : number ;
   constructor(
     private route : ActivatedRoute,
     private location : Location, 
     private userService : UserService,
     private formBuilder : FormBuilder,
     private authService : AuthService,
-    private token : TokenStorageService
+    private roleService : RoleService
   ) { }
 
   userForm = this.formBuilder.group(
@@ -41,7 +41,6 @@ export class UserDetailComponent implements OnInit {
   ) ;
   ngOnInit(): void {
     this.getUser(); 
-    this.myRoles = this.user?.roles
   }
 
   goBack() : void 
@@ -51,8 +50,8 @@ export class UserDetailComponent implements OnInit {
 
   getUser() : void 
   {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(id).subscribe(user => this.user = user); 
+    const code = Number(this.route.snapshot.paramMap.get('code'));
+    this.userService.getUser(code).subscribe(user => this.user = user); 
   }
 
   addUser(
@@ -77,9 +76,16 @@ export class UserDetailComponent implements OnInit {
 
   getRoles() : void 
   {
-   this.currentUser = this.token.getUser();
-   this.roles = this.currentUser.roles;
+    this.roleService.getRoles().subscribe(
+      (response : Role[]) => {
+        this.roles = response
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
+
 
 
   show(): void 
@@ -94,7 +100,7 @@ export class UserDetailComponent implements OnInit {
 
   saveRole() : void 
   {
-    if(this.chosenRole)
+    if(this.chosenRoleId)
     {
      this.user?.roles?.push(this.chosenRole!);
      this.userService.updateUser(this.user!).subscribe(
@@ -106,8 +112,9 @@ export class UserDetailComponent implements OnInit {
 
   onOptionsSelected(value : string) : void 
   {
-    console.log(value)
-      this.chosenRole = new Role(value);
+      this.chosenRoleId = parseInt(value);
+      this.roleService.getRole(this.chosenRoleId).subscribe(role => this.chosenRole = role);    
+
   }
   
 

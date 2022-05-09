@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'session/detail/:id', component: SessionDetailComponent },
   { path: 'users', component: UserComponent },
   { path: 'user/detail', component: UserDetailComponent },
-  { path: 'user/detail/:id', component: UserDetailComponent },
+  { path: 'user/detail/:code', component: UserDetailComponent },
   { path: 'role/detail', component: RoleDetailComponent },
   { path: 'role/detail/:id', component: RoleDetailComponent }
 

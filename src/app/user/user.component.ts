@@ -38,8 +38,8 @@ export class UserComponent implements OnInit {
     );
   }
 
-  public deleteUser(id : number): void{
-    this.userService.deleteUser(id).subscribe(
+  public deleteUser(code : number): void{
+    this.userService.deleteUser(code).subscribe(
       (response: void) => {
         console.log(response);
         this.getUsers();
