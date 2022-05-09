@@ -10,8 +10,8 @@
         <th scope="col">pays</th>
         <th scope="col">organisme</th>
         <th scope="col">profil</th>
-        <th scope="col" *ngIf="adminPermission">update</th>
-        <th scope="col" *ngIf="adminPermission">delete</th>
+        <th scope="col">update</th>
+        <th scope="col">delete</th>
       </tr>
     </thead>
     <tbody *ngFor="let participant of participants">
@@ -25,8 +25,8 @@
         <td>{{participant.pays?.nom}}</td>
         <td>{{participant.organisme?.libelle}}</td>
         <td>{{participant.profil?.libelle}}</td>
-        <td *ngIf="adminPermission"><a routerLink="/participant/detail/{{participant.id}}">update</a></td>
-        <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteParticipant(participant.id!)">delete</button></td>
+        <td ><a routerLink="/participant/detail/{{participant.id}}">update</a></td>
+        <td ><button type="button" class="btn btn-danger" (click)="deleteParticipant(participant.id!)">delete</button></td>
       </tr>
 
     </tbody>

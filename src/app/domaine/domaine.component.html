@@ -1,14 +1,14 @@
 
-  <div *ngIf="adminPermission">
-    <h3><a routerLink="/domaine/detail" *ngIf="adminPermission"> ajouter un domaine</a></h3>
+  <div *ngIf="userPermission">
+    <h3><a routerLink="/domaine/detail"> ajouter un domaine</a></h3>
     <table class="table">
         <thead class="thead-dark">
             <tr>
             <th scope="col">id</th>
             <th scope="col">libelle</th>
 
-            <th scope="col" *ngIf="adminPermission">update</th>
-            <th scope="col" *ngIf="adminPermission">delete</th>
+            <th scope="col">update</th>
+            <th scope="col">delete</th>
             </tr>
         </thead>
         <tbody *ngFor="let domaine of domaines">

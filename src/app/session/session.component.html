@@ -1,4 +1,4 @@
-<h3><a routerLink="/session/detail" *ngIf="adminPermission"> ajouter une session</a></h3>
+<h3><a routerLink="/session/detail" > ajouter une session</a></h3>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -11,8 +11,8 @@
         <th scope="col">organisme</th>
         <th scope="col">nb participants</th>
        <!-- <th scope="col">nombre de participants</th>-->
-        <th scope="col" *ngIf="adminPermission">update</th>
-        <th scope="col" *ngIf="adminPermission">delete</th>
+        <th scope="col">update</th>
+        <th scope="col">delete</th>
       </tr>
     </thead>
     <tbody *ngFor="let session of sessions">
@@ -27,8 +27,8 @@
         <td>{{session.organisme?.libelle}}</td>
         <td>{{session.participants?.length}}</td>
        <!-- <td>{{session.nb_participant}}</td>-->
-        <td *ngIf="adminPermission"><a routerLink="/session/detail/{{session.id}}">update</a></td>
-        <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteSession(session.id!)">delete</button></td>
+        <td><a routerLink="/session/detail/{{session.id}}">update</a></td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteSession(session.id!)">delete</button></td>
       </tr>
 
     </tbody>

@@ -12,8 +12,8 @@
           <th scope="col">duree</th>
           <th scope="col">type</th>
           <th scope="col">domaine</th>
-          <th scope="col" *ngIf="adminPermission">update</th>
-          <th scope="col" *ngIf="adminPermission">delete</th>
+          <th scope="col">update</th>
+          <th scope="col">delete</th>
         </tr>
       </thead>
       <tbody *ngFor="let formation of formations">
@@ -27,8 +27,8 @@
           <td>{{formation.duree}}</td>
           <td>{{formation.type}}</td>
           <td>{{formation.domaine?.libelle}}</td>
-          <td *ngIf="adminPermission"><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
-          <td *ngIf="adminPermission"><button type="button" class="btn btn-danger" (click)="deleteFormation(formation.id!)">delete</button></td>
+          <td><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteFormation(formation.id!)">delete</button></td>
         </tr>
 
       </tbody>

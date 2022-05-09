@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'formation/detail', component: FormationDetailComponent },
   { path: 'formation/detail/:id', component: FormationDetailComponent },
   { path: 'domaine/detail', component: DomaineDetailComponent },

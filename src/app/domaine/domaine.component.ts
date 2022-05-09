@@ -19,12 +19,12 @@ export class DomaineComponent implements OnInit {
 
   domaines? : Domaine[] ;
   currentUser : any ;
-  adminPermission : boolean = false ; 
+  userPermission : boolean = false ; 
   
   ngOnInit(): void {
     this.currentUser = this.token.getUser(); 
-    this.adminPermission = this.permissions();
-    if (this.adminPermission ) {
+    this.userPermission = this.permissions();
+    if (this.userPermission ) {
       this.getDomaines() };
   }
 
@@ -54,7 +54,7 @@ export class DomaineComponent implements OnInit {
 
   public permissions(): boolean 
   {
-    return this.currentUser.roles.includes("ROLE_ADMIN");
+    return this.currentUser.roles.includes("ROLE_USER");
   }
 
 
