@@ -17,13 +17,13 @@ export class UserDetailComponent implements OnInit {
 
 
 
-  @Input() user? : User ;
+  @Input() user? : User;
   roles? : Role[];
   chosenRole? : Role ;
   chosenRoleId? : number ;
   constructor(
     private route : ActivatedRoute,
-    private location : Location, 
+    private location : Location,
     private userService : UserService,
     private formBuilder : FormBuilder,
     private authService : AuthService,
@@ -37,31 +37,31 @@ export class UserDetailComponent implements OnInit {
     }
   ) ;
   ngOnInit(): void {
-    this.getUser(); 
+    this.getUser();
   }
 
-  goBack() : void 
+  goBack() : void
   {
-    this.location.back() ; 
+    this.location.back() ;
   }
 
-  getUser() : void 
+  getUser() : void
   {
     const code = Number(this.route.snapshot.paramMap.get('code'));
-    this.userService.getUser(code).subscribe(user => this.user = user); 
+    this.userService.getUser(code).subscribe(user => this.user = user);
   }
 
   addUser(
     login: string,password : string,
-  ) : void 
+  ) : void
   {
     this.authService.register(login,password)
-    .subscribe(() => this.goBack()) ; 
+    .subscribe(() => this.goBack()) ;
   }
 
 
 
-  saveUser(): void 
+  saveUser(): void
   {
     if(this.user)
     {
@@ -71,7 +71,7 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
-  getRoles() : void 
+  getRoles() : void
   {
     this.roleService.getRoles().subscribe(
       (response : Role[]) => {
@@ -85,17 +85,17 @@ export class UserDetailComponent implements OnInit {
 
 
 
-  show(): void 
+  show(): void
   {
 
-    document.getElementById("sessionsToAdd")!.hidden = false ; 
-    document.getElementById("saveAdded")!.hidden = false ; 
+    document.getElementById("sessionsToAdd")!.hidden = false ;
+    document.getElementById("saveAdded")!.hidden = false ;
 
     this.getRoles();
 
   }
 
-  saveRole() : void 
+  saveRole() : void
   {
     if(this.chosenRoleId)
     {
@@ -107,12 +107,12 @@ export class UserDetailComponent implements OnInit {
 
   }
 
-  onOptionsSelected(value : string) : void 
+  onOptionsSelected(value : string) : void
   {
       this.chosenRoleId = parseInt(value);
-      this.roleService.getRole(this.chosenRoleId).subscribe(role => this.chosenRole = role);    
+      this.roleService.getRole(this.chosenRoleId).subscribe(role => this.chosenRole = role);
 
   }
-  
+
 
 }

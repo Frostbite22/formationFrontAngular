@@ -1,35 +1,72 @@
+<div class="mat-elevation-z8">
+  <h2><a routerLink="/formateur/detail" *ngIf="adminPermission">Ajouter une formateur</a></h2>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort class="demo-table">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs"> {{formateur.id}} </mat-cell>
+    </ng-container>
 
-  
-  <h3><a routerLink="/formateur/detail" > ajouter un formateur</a></h3>
-  <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">nom</th>
-          <th scope="col">prenom</th>
-          <th scope="col">email</th>
-          <th scope="col">tel</th>
-          <th scope="col">type</th>
-          <th scope="col">organisme</th>
-          <th scope="col" >update</th>
-          <th scope="col" >delete</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let formateur of formateurs">
- 
-        <tr>
-          <th scope="row">{{formateur.id}}</th>
-          <td>{{formateur.nom}}</td>
-          <td>{{formateur.prenom}}</td>
-          <td>{{formateur.email}}</td>
-          <td>{{formateur.tel}}</td>
-          <td>{{formateur.type}}</td>
-          <td>{{formateur.organisme?.libelle}}</td>
-          <td><a routerLink="/formateur/detail/{{formateur.id}}">update</a></td>
-          <td><button type="button" class="btn btn-danger" (click)="deleteFormateur(formateur.id!)">delete</button></td>
-        </tr>
+    <!-- Nom Column -->
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs"> {{formateur.nom}} </mat-cell>
+    </ng-container>
 
-      </tbody>
-    </table>
+
+    <!-- Prenom Column -->
+    <ng-container matColumnDef="prenom">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Prenom </mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs"> {{formateur.prenom}} </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs"> {{formateur.email}} </mat-cell>
+    </ng-container>
+
+    <!-- Tel Column -->
+    <ng-container matColumnDef="tel">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tel </mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs"> {{formateur.tel}} </mat-cell>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs"> {{formateur.type}} </mat-cell>
+    </ng-container>
+
+    <!-- Organisme Column -->
+    <ng-container matColumnDef="organisme">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Organisme </mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs"> {{formateur.organisme?.libelle}} </mat-cell>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="update" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs">
+        <a routerLink="/formateur/detail/{{formateur.id}}" *ngIf="adminPermission" class="btn btn-primary">update</a>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let formateur of formateurs">
+        <button type="button" class="btn btn-danger" *ngIf="adminPermission" (click)="deleteFormateur(formateur.id!)">delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
 
 <app-organisme></app-organisme>
