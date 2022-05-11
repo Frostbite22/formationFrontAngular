@@ -1,28 +1,42 @@
+<div class="mat-elevation-z8">
+  <h2><a routerLink="/pay/detail" *ngIf="userPermission">Ajouter une pay</a></h2>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort class="demo-table">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let pay of pays"> {{pay.id}} </mat-cell>
+    </ng-container>
 
-  <div *ngIf="userPermission">
-    <h3><a routerLink="/pays/detail" > ajouter un pays</a></h3>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col">id</th>
-            <th scope="col">nom</th>
+    <!-- Nom Column -->
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+      <mat-cell *matCellDef="let pay of pays"> {{pay.nom}} </mat-cell>
+    </ng-container>
 
-            <th scope="col">update</th>
-            <th scope="col">delete</th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let pays of lesPays">
-    
-            <tr>
-            <th scope="row">{{pays.id}}</th>
-            <td>{{pays.nom}}</td>
-            
-            <td><a routerLink="/organisme/detail/{{pays.id}}">update</a></td>
-            <td><button type="button" class="btn btn-danger" (click)="deletePays(pays.id!)">delete</button></td>
-            </tr>
+    <!-- Update Column -->
+    <ng-container matColumnDef="update" *ngIf="userPermission">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let pay of pays">
+        <a routerLink="/pay/detail/{{pay.id}}" class="btn btn-primary">update</a>
+      </mat-cell>
+    </ng-container>
 
-        </tbody>
-    </table>
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete" *ngIf="userPermission">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let pay of pays">
+        <button type="button" class="btn btn-danger" (click)="deletePays(pay.id!)">delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 
- 
+
+

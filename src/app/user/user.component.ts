@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { TokenStorageService } from '../_services/token-storage.service';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 import { User } from '../entities/user';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -18,19 +20,31 @@ export class UserComponent implements OnInit {
 
   users? : User[] ;
   currentUser : any ;
-  adminPermission : boolean = false ; 
-  
-  ngOnInit(): void {
-    this.getUsers() ;
-    this.currentUser = this.token.getUser(); 
-    this.adminPermission = this.permissions();
+  adminPermission : boolean = false ;
+  dataSource!: MatTableDataSource<User>;
+  displayedColumns: string[] = ['code', 'login','update','delete'];
+  displayedColumnsData: string[] = ['code', 'login','update','delete'];
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
-  getUsers() : void 
+  ngOnInit(): void {
+    this.getUsers() ;
+    this.currentUser = this.token.getUser();
+    this.adminPermission = this.permissions();
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  getUsers() : void
   {
     this.userService.getUsers().subscribe(
       (response : User[]) => {
-        this.users = response ;
+        this.users = response;
+        this.dataSource = new MatTableDataSource(this.users);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -46,15 +60,23 @@ export class UserComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-      }      
+      }
     );
   }
 
-  public permissions(): boolean 
+  public permissions(): boolean
   {
     return this.currentUser.roles.includes("ROLE_ADMIN");
   }
 
+  logData(row: any) {
+    console.log(row);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
 
 }

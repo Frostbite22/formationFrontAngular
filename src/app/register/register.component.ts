@@ -7,13 +7,13 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  logo = './assets/images/logo_formation.png'
   form : any = {
-    login : null, 
+    login : null,
     password : null
   };
-  isSuccessful = false ; 
-  isSignUpFailed = false ; 
+  isSuccessful = false ;
+  isSignUpFailed = false ;
   errorMessage = '' ;
   constructor(
     private authService : AuthService
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() : void 
+  onSubmit() : void
   {
     const {login , password } = this.form ;
     this.authService.register(login,password).subscribe(

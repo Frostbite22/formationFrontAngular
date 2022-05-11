@@ -1,36 +1,77 @@
-<h3><a routerLink="/session/detail" > ajouter une session</a></h3>
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">date_debut</th>
-        <th scope="col">date_fin</th>
-        <th scope="col">lieu</th>
-        <th scope="col">formateur</th>
-        <th scope="col">formation</th>
-        <th scope="col">organisme</th>
-        <th scope="col">nb participants</th>
-       <!-- <th scope="col">nombre de participants</th>-->
-        <th scope="col">update</th>
-        <th scope="col">delete</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let session of sessions">
+<div class="mat-elevation-z8">
+  <h2><a routerLink="/session/detail" *ngIf="adminPermission">Ajouter une session</a></h2>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort class="demo-table">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.id}} </mat-cell>
+    </ng-container>
 
-      <tr>
-        <th scope="row">{{session.id}}</th>
-        <td>{{session.date_debut}}</td>
-        <td>{{session.date_fin}}</td>
-        <td>{{session.lieu}}</td>
-        <td>{{session.formateur?.nom}}</td>
-        <td>{{session.formation?.titre}}</td>
-        <td>{{session.organisme?.libelle}}</td>
-        <td>{{session.participants?.length}}</td>
-       <!-- <td>{{session.nb_participant}}</td>-->
-        <td><a routerLink="/session/detail/{{session.id}}">update</a></td>
-        <td><button type="button" class="btn btn-danger" (click)="deleteSession(session.id!)">delete</button></td>
-      </tr>
+    <!-- Date Debut Column -->
+    <ng-container matColumnDef="date_debut">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Date Debut </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.date_debut}} </mat-cell>
+    </ng-container>
 
-    </tbody>
-  </table>
+
+    <!-- Date Fin Column -->
+    <ng-container matColumnDef="date_fin">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Date Fin </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.date_fin}} </mat-cell>
+    </ng-container>
+
+    <!-- Lieu Column -->
+    <ng-container matColumnDef="lieu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Lieu </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.lieu}} </mat-cell>
+    </ng-container>
+
+    <!-- Nb Participants Column -->
+    <ng-container matColumnDef="nb_participants">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nb Participants </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.participants?.length}} </mat-cell>
+    </ng-container>
+
+    <!-- Formateur Column -->
+    <ng-container matColumnDef="formateur">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Formateur </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.formateur?.nom}} </mat-cell>
+    </ng-container>
+
+    <!-- Formation Column -->
+    <ng-container matColumnDef="formation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Formation </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.formation?.titre}} </mat-cell>
+    </ng-container>
+
+    <!-- Organisme Column -->
+    <ng-container matColumnDef="organisme">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Organisme </mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions"> {{session.organisme?.libelle}} </mat-cell>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="update" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions">
+        <a routerLink="/session/detail/{{session.id}}" *ngIf="adminPermission" class="btn btn-primary">update</a>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let session of sessions">
+        <button type="button" class="btn btn-danger" *ngIf="adminPermission" (click)="deleteSession(session.id!)">delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
 

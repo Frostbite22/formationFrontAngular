@@ -1,38 +1,79 @@
+<div class="mat-elevation-z8">
+  <h2><a routerLink="/formation/detail" *ngIf="adminPermission">Ajouter une formation</a></h2>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort class="demo-table">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.id}} </mat-cell>
+    </ng-container>
 
-  
-  <h3><a routerLink="/formation/detail" *ngIf="adminPermission"> ajouter une formation</a></h3>
-  <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">titre</th>
-          <th scope="col">annee</th>
-          <th scope="col">budget</th>
-          <th scope="col">nb_session</th>
-          <th scope="col">duree</th>
-          <th scope="col">type</th>
-          <th scope="col">domaine</th>
-          <th scope="col">update</th>
-          <th scope="col">delete</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let formation of formations">
- 
-        <tr>
-          <th scope="row">{{formation.id}}</th>
-          <td>{{formation.titre}}</td>
-          <td>{{formation.annee}}</td>
-          <td>{{formation.budget}}</td>
-          <td>{{formation.nb_session}}</td>
-          <td>{{formation.duree}}</td>
-          <td>{{formation.type}}</td>
-          <td>{{formation.domaine?.libelle}}</td>
-          <td><a routerLink="/formation/detail/{{formation.id}}">update</a></td>
-          <td><button type="button" class="btn btn-danger" (click)="deleteFormation(formation.id!)">delete</button></td>
-        </tr>
+    <!-- Titre Column -->
+    <ng-container matColumnDef="titre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Titre </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.titre}} </mat-cell>
+    </ng-container>
 
-      </tbody>
-    </table>
 
- 
-    
+    <!-- Annee Column -->
+    <ng-container matColumnDef="annee">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Annee </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.annee}} </mat-cell>
+    </ng-container>
+
+    <!-- Nb Session Column -->
+    <ng-container matColumnDef="nb_session">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nb Session </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.nb_session}} </mat-cell>
+    </ng-container>
+
+    <!-- Duree Column -->
+    <ng-container matColumnDef="duree">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Duree </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.duree}} </mat-cell>
+    </ng-container>
+
+    <!-- Budget Column -->
+    <ng-container matColumnDef="budget">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Budget </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.budget}} </mat-cell>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.type}} </mat-cell>
+    </ng-container>
+
+    <!-- Domaine Column -->
+    <ng-container matColumnDef="domaine">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Domaine </mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations"> {{formation.domaine?.libelle}} </mat-cell>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="update" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations">
+        <a routerLink="/formation/detail/{{formation.id}}" *ngIf="adminPermission" class="btn btn-primary">update</a>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let formation of formations">
+        <button type="button" class="btn btn-danger" *ngIf="adminPermission" (click)="deleteFormation(formation.id!)">delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+
+

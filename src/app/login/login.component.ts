@@ -9,15 +9,15 @@ import { TokenStorageService } from '../_services/token-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  logo = './assets/images/logo_formation.png'
   form : any = {
     username : null,
-    password : null 
+    password : null
   };
-  isLoggedIn = false ; 
-  isLoginFailed = false ; 
-  errorMessage = '' ; 
-  roles : string[] = [] ; 
+  isLoggedIn = false ;
+  isLoginFailed = false ;
+  errorMessage = '' ;
+  roles : string[] = [] ;
   constructor(
     private authService : AuthService,
     private tokenStorage : TokenStorageService
@@ -26,33 +26,33 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if(this.tokenStorage.getToken())
     {
-      this.isLoggedIn = true ; 
+      this.isLoggedIn = true ;
       this.roles = this.tokenStorage.getUser().roles ;
     }
   }
 
-  onSubmit(): void 
+  onSubmit(): void
   {
     const {login,password} = this.form ;
     this.authService.login(login,password).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data); 
-        this.isLoggedIn = true ; 
-        this.isLoginFailed = false ; 
-        this.roles = this.tokenStorage.getUser().roles ; 
-        this.reloadPage(); 
+        this.tokenStorage.saveUser(data);
+        this.isLoggedIn = true ;
+        this.isLoginFailed = false ;
+        this.roles = this.tokenStorage.getUser().roles ;
+        this.reloadPage();
       },
       err => {
-        this.errorMessage = err.error.message; 
-        this.isLoginFailed = true ; 
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true ;
       }
     );
   }
 
-  reloadPage() : void 
+  reloadPage() : void
   {
-    window.location.reload() ; 
+    window.location.reload() ;
   }
 
 

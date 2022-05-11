@@ -1,28 +1,42 @@
+<div class="mat-elevation-z8">
+  <h2><a routerLink="/organisme/detail" *ngIf="userPermission">Ajouter une organisme</a></h2>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort class="demo-table">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let organisme of organismes"> {{organisme.id}} </mat-cell>
+    </ng-container>
 
-  <div *ngIf="userPermission">
-    <h3><a routerLink="/organisme/detail" > ajouter une organisme</a></h3>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col">id</th>
-            <th scope="col">libelle</th>
+    <!-- Libelle Column -->
+    <ng-container matColumnDef="libelle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Libelle </mat-header-cell>
+      <mat-cell *matCellDef="let organisme of organismes"> {{organisme.libelle}} </mat-cell>
+    </ng-container>
 
-            <th scope="col" >update</th>
-            <th scope="col" >delete</th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let organisme of organismes">
-    
-            <tr>
-            <th scope="row">{{organisme.id}}</th>
-            <td>{{organisme.libelle}}</td>
-            
-            <td><a routerLink="/organisme/detail/{{organisme.id}}">update</a></td>
-            <td><button type="button" class="btn btn-danger" (click)="deleteOrganisme(organisme.id!)">delete</button></td>
-            </tr>
+    <!-- Update Column -->
+    <ng-container matColumnDef="update" *ngIf="userPermission">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let organisme of organismes">
+        <a routerLink="/organisme/detail/{{organisme.id}}" class="btn btn-primary">update</a>
+      </mat-cell>
+    </ng-container>
 
-        </tbody>
-    </table>
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete" *ngIf="userPermission">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let organisme of organismes">
+        <button type="button" class="btn btn-danger" (click)="deleteOrganisme(organisme.id!)">delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 
- 
+
+

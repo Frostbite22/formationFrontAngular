@@ -1,40 +1,52 @@
 <div class="row" *ngIf="adminPermission">
-  <div class="col col-md-7">
-    <h3><a routerLink="/user/detail" > ajouter un utilisateur</a></h3>
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">code</th>
-        <th scope="col">login</th>
+<div class="mat-elevation-z8 col col-md-5">
+  <h2><a routerLink="/user/detail" *ngIf="adminPermission">Ajouter une user</a></h2>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort class="demo-table">
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code </mat-header-cell>
+      <mat-cell *matCellDef="let user of users"> {{user.code}} </mat-cell>
+    </ng-container>
 
-        <th scope="col" *ngIf="adminPermission">update</th>
-        <th scope="col" *ngIf="adminPermission">delete</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let user of users">
+    <!-- Login Column -->
+    <ng-container matColumnDef="login">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Login </mat-header-cell>
+      <mat-cell *matCellDef="let user of users"> {{user.login}} </mat-cell>
+    </ng-container>
 
-      <tr>
-        <th scope="row">{{user.code}}</th>
-        <td>{{user.login}}</td>
-       
+    <!-- Update Column -->
+    <ng-container matColumnDef="update" *ngIf="adminPermission">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let user of users">
+        <a routerLink="/user/detail/{{user.code}}" class="btn btn-primary">update</a>
+      </mat-cell>
+    </ng-container>
 
-        <td><a routerLink="/user/detail/{{user.code}}">update</a></td>
-        <td><button type="button" class="btn btn-danger" (click)="deleteUser(user.code!)">delete</button></td>
-      </tr>
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete" *ngIf="adminPermission">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let user of users">
+        <button type="button" class="btn btn-danger" (click)="deleteUser(user.code!)">delete</button>
+      </mat-cell>
+    </ng-container>
 
-    </tbody>
-  </table>
-  </div>
-  <div class="col col-md-5">
-    <app-role></app-role>
-  </div>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<div class="col col-md-7">
+  <app-role></app-role>
 </div>
 <div *ngIf="!adminPermission">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Authorization Required</h1>
-      <p class="lead">This resource need admin authorizations !</p>
-    </div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Authorization Required</h1>
+    <p class="lead">This resource need admin authorizations !</p>
   </div>
+</div>
 </div>
 

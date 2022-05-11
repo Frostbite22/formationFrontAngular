@@ -1,56 +1,47 @@
-<div class="col-md-12">
-    <div class="card card-container">
-     
-      <form
-        *ngIf="!isLoggedIn"
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-        <div class="form-group">
-          <label for="login">login</label>
-          <input
-            type="text"
-            class="form-control"
-            name="login"
-            [(ngModel)]="form.login"
-            required
-            #login="ngModel"
-          />
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="login.errors && f.submitted"
-          >
-            login is required!
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="form.password"
-            required
-            minlength="4"
-            #password="ngModel"
-          />
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="password.errors && f.submitted"
-          >
-          <div *ngIf="password.hasError('required')">Password is required</div>
-          <div *ngIf="password.hasError('minlength')">
-              Password must be at least 4 characters
-            </div>
-          </div>
-        </div>
+<div class="col-md-12 body">
+  <div class="card card-container login">
+
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+    <div class="login">
+      <img [src]="logo" alt="" width="50%" height="80%">
+      <h1 class="h3 mb-3 fw-normal"> </h1>
+      <mat-form-field class="ancho" hideRequiredMarker floatLabel='auto' appearance='outline'>
+        <mat-label name="login">Login</mat-label>
+        <input
+          type="text"
+          name="login" [(ngModel)]="form.login"
+          required #login="ngModel" matInput>
+        <mat-error *ngIf="login.hasError('required')">
+          Login is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="ancho" hideRequiredMarker floatLabel='auto' appearance='outline'>
+        <mat-label name="password">Password</mat-label>
+        <input
+        type="password"
+        matInput
+        [(ngModel)]="form.password"
+        minlength="4"
+        required
+        #password="ngModel"
+        name="password">
+        <mat-error *ngIf="password.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="password.hasError('minlength')">
+          Password must be at least <strong>4 characters</strong>
+        </mat-error>
+      </mat-form-field>
         <div class="form-group">
           <button class="btn btn-primary btn-block">
-            Login
+            Sign In
           </button>
         </div>
         <div class="form-group">
@@ -62,9 +53,15 @@
             Login failed: {{ errorMessage }}
           </div>
         </div>
-      </form>
-      <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in as {{ roles }}.
-      </div>
     </div>
-  </div>
+    <div class="center">
+      <h4 class="h4 mb-4 fw-normal">Don't have an account yet?
+        <a href="/register" class="nav-link">Register now</a>
+      </h4>
+    </div>
+    </form>
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
+    </div>
+</div>
+</div>
