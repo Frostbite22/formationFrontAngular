@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8">
-  <h2><a routerLink="/pay/detail" *ngIf="userPermission">Ajouter une pay</a></h2>
+  <h2><a routerLink="/pays/detail" *ngIf="userPermission">Ajouter une pays</a></h2>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
   </mat-form-field>
@@ -7,28 +7,28 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-      <mat-cell *matCellDef="let pay of pays"> {{pay.id}} </mat-cell>
+      <mat-cell *matCellDef="let pays of lesPays"> {{pays.id}} </mat-cell>
     </ng-container>
 
     <!-- Nom Column -->
     <ng-container matColumnDef="nom">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
-      <mat-cell *matCellDef="let pay of pays"> {{pay.nom}} </mat-cell>
+      <mat-cell *matCellDef="let pays of lesPays"> {{pays.nom}} </mat-cell>
     </ng-container>
 
     <!-- Update Column -->
     <ng-container matColumnDef="update" *ngIf="userPermission">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-      <mat-cell *matCellDef="let pay of pays">
-        <a routerLink="/pay/detail/{{pay.id}}" class="btn btn-primary">update</a>
+      <mat-cell *matCellDef="let pays of lesPays">
+        <a routerLink="/pays/detail/{{pays.id}}" class="btn btn-primary">update</a>
       </mat-cell>
     </ng-container>
 
     <!-- Delete Column -->
     <ng-container matColumnDef="delete" *ngIf="userPermission">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-      <mat-cell *matCellDef="let pay of pays">
-        <button type="button" class="btn btn-danger" (click)="deletePays(pay.id!)">delete</button>
+      <mat-cell *matCellDef="let pays of lesPays">
+        <button type="button" class="btn btn-danger" (click)="deletePays(pays.id!)">delete</button>
       </mat-cell>
     </ng-container>
 
